@@ -38,9 +38,16 @@ export class PapelIndividualComponent implements AfterViewInit, OnChanges {
   }
 
   ngOnChanges(changes: SimpleChanges) {
+    if (changes['nomeProduto']) {
+      this.nomeProduto = this.removeFileExtension(this.nomeProduto);
+    }
     if (changes['numeroDeRolos']) {
       this.updateRowGap();
     }
+  }
+
+  private removeFileExtension(fileName: string): string {
+    return fileName.split('.').slice(0, -1).join('.');
   }
 
   openModal() {
